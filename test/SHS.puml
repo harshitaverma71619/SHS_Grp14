@@ -1,0 +1,45 @@
+@startuml
+participant Patients
+participant HospitalStaff
+participant Doctors
+participant LabStaff
+participant InsuranceStaff
+participant Administrators
+participant chatbot
+participant HelpCenter
+
+
+Patients->HospitalStaff: Patient Record & Appointment Request 
+HospitalStaff->HospitalStaff: Check Doctor's Availability
+HospitalStaff->Patients: Accept/Deny
+HospitalStaff->HospitalStaff: If Accept, Patient Record \n stored/updated
+HospitalStaff->Patients: Assigns Doctor
+HospitalStaff->Patients: Create transaction requests/bills
+Doctor->Patients: diagnosis, prescribes tests, medicines
+Doctor->Doctor: Views/updates Patient Record
+Patients->LabStaff: Request lab test
+LabStaff->LabStaff: Verifies Doc updated patient record
+LabStaff->Patients: Approves
+LabStaff->LabStaff: Creates/updates lab reports
+InsuranceStaff->InsuranceStaff: Creates new policies
+Patients->InsuranceStaff: Request insurance claim
+InsuranceStaff->InsuranceStaff: verifies & approves/denies
+InsuranceStaff->Patients: Disperse funds
+Patients->HelpCenter: updates personal info/request assisstance
+Patients->chatbot: Redirect(appointment/view reports)(ML)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@enduml
