@@ -1,6 +1,6 @@
 from ast import In
 from django.contrib import admin
-from .models import InsuranceStaffDetails
+from .models import InsuranceClaimDetails
 
 # Register your models here.
-admin.site.register(InsuranceStaffDetails)
+admin.site.register(InsuranceClaimDetails)
