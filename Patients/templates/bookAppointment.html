@@ -1,0 +1,38 @@
+{% include 'navbar.html' %}
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+{{appointmentForm.media}}
+
+<div class="content-wrapper">
+    <section class="content">
+        <div class="container-fluid">
+
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#request">Request Appointmnet</a></li>
+                <li><a data-toggle="tab" href="#view">View Appointments</a></li>
+            </ul>
+            <div class="tab-content">
+                <div id="request" class="tab-pane fade in active">
+                    <h3>Appointment Form</h3></br>
+                    <form method="POST" role="form" id="form-client-info">
+                        {%for field in appointmentForm%}
+                        {{ field.label_tag }} {{ field }}</br>
+                        {%endfor%}
+                    </form>
+                </div>
+                <div id="view" class="tab-pane fade">
+                    <h3>View Appointments</h3>
+                    <p> </p>
+                </div>
+            </div>
+        </div>
+
+
+
+</div>
+</section>
+</div>
