@@ -1,0 +1,51 @@
+{% include 'navbar.html' %}
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+
+</head>
+{{appointmentForm.media}}
+
+<div class="content-wrapper">
+    <section class="content">
+        <div class="container-fluid">
+
+            {% if messages %}
+            <ul class="messages" style="padding:3px">
+                {% for message in messages %}
+                <p style="padding:3px;font-weight:600; font-size:13px" {% if message.tags %} class="{{ message.tags }}"
+                    {% endif %}>
+                    {{ message }}</p>
+                {% endfor %}
+            </ul>
+            {% endif %}
+
+
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#request">Update Appointmnet</a></li>
+            </ul>
+            <div class="tab-content">
+                <div id="request" class="tab-pane fade in active">
+                    <h3> Update Appointment</h3></br>
+                    <form method="POST" role="form" id="form-client-info">
+                        {%csrf_token%}
+                        {%for field in appointmentForm%}
+                        {{ field.label_tag }} {{ field }}</br>
+                        {%endfor%}
+                        <button type="submit" class="btn btn-warning">Update</button>
+
+                    </form>
+
+                </div>
+               
+            </div>
+        </div>
+
+
+
+</div>
+</section>
+</div>
