@@ -8,3 +8,4 @@ class LabReports(models.Model):
     patient_id = models.IntegerField(null=False)
     lab_staff_id = models.IntegerField(null=False)
     report_status = models.CharField(max_length=100, null=False)
+

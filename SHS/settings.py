@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+<<<<<<< HEAD
     'Patients',
     'HospitalStaff',
     'homepage',
@@ -46,6 +47,15 @@ INSTALLED_APPS = [
     'LabStaff',
     "bootstrap4",
     "bootstrap_datepicker_plus",
+=======
+    'HomePage',
+    'Doctors',
+    'Patients',
+    'HospitalStaff',
+    'InsuranceStaff',
+    'LabStaff',
+    
+>>>>>>> 43b08a4b2c6cac0e38c02e002d5c6c999c8ba9de
 ]
 
 MIDDLEWARE = [
