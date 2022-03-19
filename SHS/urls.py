@@ -18,6 +18,11 @@ from django.urls import path , include
 
 urlpatterns = [
     path('', include('Hospitalportal.urls')),
+    path('home/', include('homepage.urls')),
     path('admin/', admin.site.urls),
+<<<<<<< HEAD
+    path('patient/',include('Patients.urls',namespace='patient')),
+=======
     path('labStaff/', include('LabStaff.urls'))
+>>>>>>> 43b08a4b2c6cac0e38c02e002d5c6c999c8ba9de
 ]

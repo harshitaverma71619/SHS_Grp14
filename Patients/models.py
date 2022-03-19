@@ -17,4 +17,8 @@ class PatientDetails(models.Model):
     insurance_id = models.IntegerField(null=False)
     patient_diagnosis = models.CharField(max_length=1000, null=False)
     patient_reports = models.CharField(max_length=1000, null=False)
+<<<<<<< HEAD
     patient_prescription = models.CharField(max_length=1000, null=False)
+=======
+    patient_prescription = models.CharField(max_length=1000, null=False)
+>>>>>>> 43b08a4b2c6cac0e38c02e002d5c6c999c8ba9de
