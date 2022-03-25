@@ -39,14 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Patients',
     'HospitalStaff',
-    'homepage',
     'Admin',
-    'Doctors',
     'InsuranceStaff',
     'LabStaff',
-    "bootstrap4",
-    "bootstrap_datepicker_plus",
-    
+    'Doctors',
+    'HomePage'
 ]
 
 MIDDLEWARE = [
