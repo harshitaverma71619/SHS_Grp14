@@ -36,7 +36,7 @@ class bookAppointment(View):
                 appointment_with = form.cleaned_data.get('appointment_with')
                 print("going to save")
                 AppointmentObj = AppointmentDetails( appointment_id=1,patient_id=2,first_name=first_name,last_name=last_name,
-                                            appointment_with=appointment_with,requested_date=requested_date)
+                                            doctor_id=appointment_with,requested_date=requested_date)
                 AppointmentObj.save()
                 print("Saved")
                 msgS = "Added Successfully"
@@ -58,7 +58,7 @@ class updateAppointment(View):
         try:
             detail = AppointmentDetails.objects.get(id=id)
             detail = {'appointment_id': detail.appointment_id,'patient_id': detail.patient_id,'first_name': detail.first_name,'last_name': detail.last_name,
-                        'appointment_with': detail.appointment_with,'requested_date': detail.requested_date}
+                        'doctor_id': detail.doctor_id,'requested_date': detail.requested_date}
         finally:
             return render(request, 'updateAppointment.html', {               
                 'appointmentForm': appointmentForm(detail),             
@@ -80,7 +80,7 @@ class updateAppointment(View):
                 # detail.first_name = signing.loads(request.POST.get('under_ministry'))
                 detail.first_name = request.POST.get('first_name')
                 detail.last_name = request.POST.get('last_name')
-                detail.appointment_with = request.POST.get('appointment_with')
+                detail.doctor_id = request.POST.get('appointment_with')
                 detail.requested_date = request.POST.get('requested_date')
                 detail.save()
             msgS="Updated Successfully"

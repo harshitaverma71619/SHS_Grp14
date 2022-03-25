@@ -41,12 +41,13 @@ INSTALLED_APPS = [
     'HospitalStaff',
     'HomePage',
     'Admin',
-    'Doctors',
     'InsuranceStaff',
     'LabStaff',
     #'bootstrap4',
     #'bootstrap_datepicker_plus',
     
+    'Doctors',
+    'HomePage'
 ]
 
 MIDDLEWARE = [
