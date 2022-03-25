@@ -10,3 +10,6 @@ class AppointmentDetails(models.Model):
     doctor_id = models.IntegerField(null=False)
     requested_date = models.DateField(blank=True, null=True)
     status =models.CharField(max_length=255,default="Pending")
+    lab_report_id=models.IntegerField(null=True)
+    prescription=models.CharField(max_length=255,null=TRUE)
+    lab_tests=models.CharField(max_length=255,null=TRUE)
