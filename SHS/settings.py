@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     #'bootstrap_datepicker_plus',
     
     'Doctors',
-    'HomePage'
+    
 ]
 
 MIDDLEWARE = [

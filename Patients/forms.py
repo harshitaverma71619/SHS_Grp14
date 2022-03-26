@@ -27,4 +27,39 @@ class appointmentForm(forms.Form):
                                             'class': 'form-control',
                                             'placeholder': ('Appointment with')
                                         }))
+
+class insuranceClaimRequestForm(forms.Form):
+    patient_firstname = forms.CharField(label='Firstname.**', required=True,
+                                   widget=forms.TextInput(attrs=
+                                   {
+                                       'required': True,
+                                       'class': 'form-control',
+                                       'placeholder': ('patient_firstname')
+                                   }))
+                                   
+    patient_lastname = forms.CharField(label='Lastname.**', required=True,
+                                   widget=forms.TextInput(attrs=
+                                   {
+                                       'required': True,
+                                       'class': 'form-control',
+                                       'placeholder': ('patient_lastname')
+                                   }))                               
+    
+
+    insurance_name = forms.CharField(label='Insurance policy name', required=True,
+                                        widget=forms.TextInput(attrs=
+                                        {
+                                            'required': True,
+                                            'class': 'form-control',
+                                            'placeholder': ('insurance_name')
+                                        }), max_length=200)
+
+    claim_amt = forms.IntegerField(label= 'Claim amount', required=True,
+                                     widget=forms.NumberInput(attrs=
+                                     {
+                                         'required':True,
+                                         'class': 'form-control',
+                                         'placeholder': ('claim_amt')
+                                     }))
+
     
