@@ -11,4 +11,4 @@ class AppointmentDetails(models.Model):
     prescribed_report_status = models.BooleanField(default=False)               # patient comes -> takes appointment -> this field will be by default "False" -> when doctor prescribes test changed to "True". Those changed to "True" will be shown under lab requests
     report_status = models.CharField(null=False, max_length=255, default="Pending")                                 # whether the lab report request is "approved" by the patient or not
     prescription=models.CharField(max_length=255,null=True)
-    lab_tests=models.CharField(max_length=255,null=True)
+    lab_tests=models.TextField(max_length=1000,null=True)

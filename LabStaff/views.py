@@ -15,7 +15,6 @@ class labStaffHome(View):
 class viewRequests(View):
     def get(self, request):
         request_details = AppointmentDetails.objects.all()
-        # jsonDecoder = json.decoder.JSONDecodeError()
         # for entry in request_details:
         #     if entry.lab_tests != None:
         #         lab_tests = json.loads(entry.lab_tests)
@@ -30,12 +29,12 @@ class viewRequests(View):
         msgS = ''
         try:
             request_details = AppointmentDetails.objects.all()
-            id = int(request.POST.get('approve'))
+            appoitment_id = int(request.POST.get('approve'))
             for entry in request_details:
-                if entry.id == id:
-                    lab_report = LabReports(report_id = 1, doctor_id = entry.doctor_id, patient_id = entry.patient_id, lab_staff_id = 1, report_status = "Approved", test_name = entry.lab_tests)
+                if entry.appointment_id == appoitment_id:
+                    lab_report = LabReports(report_id = 1, doctor_id = entry.doctor_id, patient_id = entry.patient_id, lab_staff_id = 1, report_status = "Approved", tests = entry.lab_tests)
                     lab_report.save()
-                    appointment = AppointmentDetails.objects.get(id=entry.id)
+                    appointment = AppointmentDetails.objects.get(appointment_id=entry.appointment_id)
                     appointment.report_status = "Approved"
                     appointment.save()
                     msgS = "Added Successfully"
