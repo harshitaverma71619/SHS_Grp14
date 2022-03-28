@@ -56,14 +56,13 @@
                                 <li class="list-group-item">
                                     <div class="row">
                                         <div class="col">
-                                            <p>Id: {{request.id}}</p>
                                             <p>Patient ID: {{request.patient_id}}</p>
-                                            <p>Doctor ID: {{request.doctor_id}}</p>
+                                            <p>Patient name: {{request.first_name}}{{request.last_name}}</p>
                                         </div>
                                         <div class="col text-right">
                                             <button type="button" class="btn btn-success btn-sm"
                                                 data-card-widget="collapse">
-                                                {{request.request_status}}
+                                                {{request.status}}
                                             </button>
                                         </div>
                                     </div>
