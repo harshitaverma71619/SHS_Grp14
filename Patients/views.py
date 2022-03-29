@@ -7,7 +7,11 @@ from InsuranceStaff.models import InsuranceClaimDetails
 from .forms import *
 from django.contrib import messages
 from django.utils.decorators import method_decorator
+from django.contrib.auth import logout
 
+def logout_view(request):
+     logout(request)
+     return redirect('/Login')
 
 class patientHome(View):
     def get(self,request):

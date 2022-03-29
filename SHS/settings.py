@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'Patients',
     'HospitalStaff',
     'HomePage',
+    'Hospitalportal',
     'Admin',
     'InsuranceStaff',
     'LabStaff',
@@ -91,7 +92,7 @@ DATABASES = {
     }
 }
 
-
+AUTH_USER_MODEL = "Hospitalportal.User" 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 
@@ -131,6 +132,14 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_FROM_USER = 'SSTESTSHS@gmail.com'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'SSTESTSHS@gmail.com'
+EMAIL_HOST_PASSWORD = 'SSTESTSHS7777'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

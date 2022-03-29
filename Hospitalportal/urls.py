@@ -1,11 +1,11 @@
-from django.urls import path
+from django.urls import path , include
 from . import views
 
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('index2', views.index2, name='index2'),
-     path('index3', views.index3, name='index3'),
-      path('starter', views.index3, name='index3'),
-       path('iframe', views.index3, name='index3')
-
+    
+    path('Login', views.Login.as_view(), name='Login'),
+    path('Register', views.Register, name='Register'),
+    path('Registercheck', views.Registercheck.as_view(), name='Registercheck'),
+     path('activate-user/<uidb64>/<token>',
+         views.activate_user, name='activate'),
 ]
