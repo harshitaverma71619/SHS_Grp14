@@ -28,7 +28,7 @@ class labTests(models.Model):
     requested_date = models.DateField(blank=True, null=True)
     doctor_id = models.IntegerField(default=0, null=False)
     patient_diagnosis = models.CharField(max_length=255, default="adding....")
-    lab_Tests = models.CharField(max_length=255, default="adding....")
+    lab_test = models.CharField(max_length=255, default="adding....")
     lab_report = models.CharField(max_length=255, default="adding....")
     lab_test_status = models.CharField(max_length=255, default="adding....")
     lab_report_status = models.CharField(max_length=255, default="adding....")

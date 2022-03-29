@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.shortcuts import redirect, render
 from django.views import View
+from Doctors.models import labTests
 from LabStaff.models import LabReports
 from HospitalStaff.models import AppointmentDetails
 import json
@@ -14,28 +15,22 @@ class labStaffHome(View):
 
 class viewRequests(View):
     def get(self, request):
-        request_details = AppointmentDetails.objects.all()
-        # for entry in request_details:
-        #     if entry.lab_tests != None:
-        #         lab_tests = json.loads(entry.lab_tests)
-        #         entry.lab_tests = lab_tests
-        #     else:
-        #         entry.lab_tests = []
+        request_details = labTests.objects.all()
         return render(request, 'viewRequests.html', {
-            'requests': request_details,
+            'requests': request_details
         })
 
     def post(self,request):
         msgS = ''
         try:
-            request_details = AppointmentDetails.objects.all()
+            request_details = labTests.objects.all()
             appoitment_id = int(request.POST.get('approve'))
             for entry in request_details:
                 if entry.appointment_id == appoitment_id:
-                    lab_report = LabReports(report_id = 1, doctor_id = entry.doctor_id, patient_id = entry.patient_id, lab_staff_id = 1, report_status = "Approved", tests = entry.lab_tests)
+                    lab_report = LabReports(doctor_id = entry.doctor_id, patient_id = entry.patient_id, lab_staff_id = 1, report_status = "Approved", test_name = entry.lab_test)
                     lab_report.save()
-                    appointment = AppointmentDetails.objects.get(appointment_id=entry.appointment_id)
-                    appointment.report_status = "Approved"
+                    appointment = labTests.objects.get(appointment_id=entry.appointment_id)
+                    appointment.lab_test_status = "Approved"
                     appointment.save()
                     msgS = "Added Successfully"
                     break

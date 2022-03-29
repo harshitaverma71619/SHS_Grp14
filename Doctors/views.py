@@ -1,4 +1,4 @@
-from asyncio.windows_events import NULL
+# from asyncio.windows_events import NULL
 from distutils.log import error
 from email import message
 from functools import reduce
@@ -169,7 +169,7 @@ class addDiagnosis(View):
                     pd = detail1.patient_diagnosis
 
                     labTestObj = labTests(patient_id = pt,appointment_id = ap,first_name = fs,
-                    last_name = ls, requested_date = rq,doctor_id = di, patient_diagnosis = pd,lab_Tests = lab_tests1)
+                    last_name = ls, requested_date = rq,doctor_id = di, patient_diagnosis = pd,lab_test = lab_tests1, prescribed_report_status = True, )
                     print(labTestObj)
                     labTestObj.save()
                     print(detail1)
