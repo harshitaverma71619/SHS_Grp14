@@ -101,7 +101,7 @@ class Registercheck(View):
                 #if User.objects.filter(email=str(patient_email)).exists():
                 #    messages.info(request,'EMAIL ALREADY EXIST')
                 #    return render(request,'register.html')
-                PatientDetailsObj = PatientDetails(patient_name=patient_name,patient_age = patient_age, patient_weight = patient_weight,patient_height = patient_height, patient_address = patient_address, patient_phone_no = patient_phone_no,patient_email =patient_email,insurance_id = 123, patient_diagnosis ="asas",patient_reports="ss", patient_prescription="asa")
+                PatientDetailsObj = PatientDetails(patient_name=patient_name,patient_age = patient_age, patient_weight = patient_weight,patient_height = patient_height, patient_address = patient_address, patient_phone_no = patient_phone_no,patient_email =patient_email)
                 PatientDetailsObj.save()
                 Userobj = User.objects.create_user(username=patient_name, password = password, email = patient_email)
                 Userobj.save()

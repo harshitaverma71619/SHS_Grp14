@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
+from ssl import DefaultVerifyPaths
+from django.contrib.messages import constants as messages
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -26,6 +29,14 @@ SECRET_KEY = 'django-insecure-q2pve$0b_vzd7@elnx=0l7@%t(l$y7)u#p&nyip@%lv#x_na!r
 DEBUG = True
 
 ALLOWED_HOSTS = []
+
+MESSAGE_TAGS = {
+    messages.DEBUG: 'alert-info',
+    messages.INFO: 'alert-info',
+    messages.SUCCESS: 'alert-success',
+    messages.WARNING: 'alert-warning',
+    messages.ERROR: 'alert-danger',
+}
 
 
 # Application definition
@@ -145,3 +156,7 @@ EMAIL_PORT = 587
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+DEFAULT_APPS = [
+    'django.contrib.messages'
+]

@@ -38,10 +38,10 @@ class bookAppointment(View):
                 first_name = form.cleaned_data.get('first_name')
                 last_name = form.cleaned_data.get('last_name')
                 requested_date = form.cleaned_data.get('requested_date')
-                appointment_with = form.cleaned_data.get('appointment_with')
+                doctor_id = form.cleaned_data.get('doctor_id')
                 print("going to save")
-                AppointmentObj = AppointmentDetails( appointment_id=1,patient_id=2,first_name=first_name,last_name=last_name,
-                                            doctor_id=appointment_with,requested_date=requested_date)
+                AppointmentObj = AppointmentDetails(patient_id=2,first_name=first_name,last_name=last_name,
+                                            doctor_id=doctor_id,requested_date=requested_date)
                 AppointmentObj.save()
                 print("Saved")
                 msgS = "Added Successfully"
@@ -61,9 +61,9 @@ class bookAppointment(View):
 class updateAppointment(View):
     def get(self, request, id):
         try:
-            detail = AppointmentDetails.objects.get(id=id)
+            detail = AppointmentDetails.objects.get(appointment_id=id)
             detail = {'appointment_id': detail.appointment_id,'patient_id': detail.patient_id,'first_name': detail.first_name,'last_name': detail.last_name,
-                        'appointment_with': detail.doctor_id,'requested_date': detail.requested_date}
+                        'doctor_id': detail.doctor_id,'requested_date': detail.requested_date}
         finally:
             return render(request, 'updateAppointment.html', {               
                 'appointmentForm': appointmentForm(detail),             
@@ -75,7 +75,7 @@ class updateAppointment(View):
             #     id = signing.loads(id)
             # except:
             #     raise Http404
-            detail = AppointmentDetails.objects.get(id=id)
+            detail = AppointmentDetails.objects.get(appointment_id=id)
             # client_persons=client_person.objects.filter(client_id=id)
             detailForm = appointmentForm(request.POST)
             if detailForm.is_valid():
@@ -85,7 +85,7 @@ class updateAppointment(View):
                 # detail.first_name = signing.loads(request.POST.get('under_ministry'))
                 detail.first_name = request.POST.get('first_name')
                 detail.last_name = request.POST.get('last_name')
-                detail.doctor_id = request.POST.get('appointment_with')
+                detail.doctor_id = request.POST.get('doctor_id')
                 detail.requested_date = request.POST.get('requested_date')
                 detail.save()
             msgS="Updated Successfully"
@@ -171,4 +171,39 @@ class updateInsuranceClaimRequest(View):
                                  extra_tags='callout callout-success calloutCustom lead' if msgS else 'callout callout-danger calloutCustom lead')
             return HttpResponseRedirect(reverse('patient:updateInsuranceClaimRequest', args=[id]))
   
-
+class nextAppointment(View):
+     def get(self, request, id):
+         try:
+             detail = AppointmentDetails.objects.get(appointment_id=id)
+             detail = {'appointment_id': detail.appointment_id,'patient_id': detail.patient_id,'first_name': detail.first_name,'last_name': detail.last_name,
+                         'doctor_id': detail.doctor_id}
+         finally:
+             return render(request, 'bookAppointment.html', {               
+                 'appointmentForm': appointmentForm(detail),             
+             })
+     def post(self,request, id):
+         msgS = ''
+         try:
+             form = appointmentForm(request.POST)
+             if form.is_valid():
+                 first_name = form.cleaned_data.get('first_name')
+                 last_name = form.cleaned_data.get('last_name')
+                 requested_date = form.cleaned_data.get('requested_date')
+                 doctor_id = form.cleaned_data.get('doctor_id')
+                 print("going to save")
+                 AppointmentObj = AppointmentDetails(patient_id=2,first_name=first_name,last_name=last_name,
+                                             doctor_id=doctor_id,requested_date=requested_date)
+                 AppointmentObj.save()
+                 print("Saved")
+                 msgS = "Added Successfully"
+             else:
+                 msgE = "Mention Name of the Application Type"
+         except:
+             print("in except block")
+             msgE = "Something went Wrong"
+         finally:
+             print("in finally block")
+             messages.add_message(request, messages.SUCCESS if msgS else messages.ERROR,
+                                  (msgS if not msgS == '' else msgE),
+                                  extra_tags='callout callout-success calloutCustom lead' if msgS else 'callout callout-danger calloutCustom lead')
+             return redirect('/patient/bookAppointment')

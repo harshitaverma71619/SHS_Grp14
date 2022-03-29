@@ -1,0 +1,41 @@
+{% include 'navbardoctors.html' %}
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+
+</head>
+{{appointmentForm.media}}
+
+<div class="content-wrapper">
+    <section class="content">
+        <div class="container-fluid">
+            <form action="search1" method="get" class="d-flex">
+                <h4>Enter Appointment Id:</h4>
+                <input name="query" type="text" placeholder="appointment id">
+                <!-- <h4>Enter Lab Test:</h4>
+                <input name="query1" type="text" placeholder="lab test name"> -->
+
+                <button class="btn btn-outline-success" type="submit">
+                    <i class="fa fa-search"></i>
+                </button>
+            </form>
+            <fieldset>
+            <br>
+            <br>
+            {%for a in labreportdetails%}
+    <label aria-setsize="20">Lab Test Name</label>
+    <textfield style=" min-width:25px; max-width:50%;min-height:50px;height:50%;width:50%;">{{a.lab_Tests}}</textfield>
+    <br>
+    <label>Lab Report</label>
+    <textfield style=" min-width:25px; max-width:50%;min-height:50px;height:50%;width:50%;">{{a.lab_report}}</textfield>
+    <br>
+    <br>
+    <br>
+{%endfor%}
+</fieldset>
+        </div>
+    </section>
+</div>

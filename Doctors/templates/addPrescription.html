@@ -1,0 +1,70 @@
+{% include 'navbardoctors.html' %}
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+
+</head>
+<div class="content-wrapper">
+    <section class="content">
+        <div class="container-fluid">
+            <h3 style="color: cadetblue;">Add Patient Prescription</h3>
+            <fieldset>
+                {% include 'messages.html' %}
+                <script>
+                    setTimeout(function(){
+                      if ($('#msg').length > 0) {
+                        $('#msg').remove();
+                      }
+                    }, 2000)
+                </script>
+            {% csrf_token %}
+            {%for a in patientdetails%}
+            <label aria-setsize="20">Patient ID</label>
+            <textfield style=" min-width:25px; max-width:50%;min-height:50px;height:50%;width:50%;">{{a.patient_id}}</textfield>
+            <br>
+            <label>First Name</label>
+            <textfield style=" min-width:25px; max-width:50%;min-height:50px;height:50%;width:50%;">{{a.first_name}}</textfield>
+            <br>
+            <label>Last Age</label>
+            <textfield style=" min-width:25px; max-width:50%;min-height:50px;height:50%;width:50%;">{{a.last_name}}</textfield>
+            <br>
+            <label>Patient Diagnosis</label>
+            <textfield style=" min-width:50px; max-width:50%;min-height:50px;height:50%;width:50%;">{{a.patient_diagnosis}}</textfield>
+            <br>
+            {%endfor%}
+        </fieldset>
+        <h4 style="color: cadetblue;">Drugs Added</h4>
+        <table id="data" class="table table-striped table-bordered compact" cellspacing="0" style="width:100%">
+            <thead>
+            <tr>
+                <th>Drug</th>
+                <th>Unit</th>
+                <th>Dosage</th>
+                <th>Prescription Details</th>
+            </tr>
+            </thead>
+            <tbody>
+            {%for a in prescriptionDetails%}
+            <tr>
+                <td width="5%">{{a.drug}}</td>
+                <td width="2%">{{a.unit}}</td>
+                <td width="10%">{{a.dosage}}</td>
+                <td width="10%">{{a.prescription_text}}</td>
+            </tr>
+            {%endfor%}
+            </tbody>
+        </table>
+        <h3 style="color: cadetblue;"> Add Medication</h3></br>
+                    <form method="POST" role="form" id="form-client-info">
+                        {%csrf_token%}
+                        {%for field in patientPrescriptionForm%}
+                        {{ field.label_tag }} {{ field }}</br>
+                        {%endfor%}
+                        <button type="submit" class="btn btn-warning">Add</button>
+                    </form>
+        </div>
+        </section>
+        </div>

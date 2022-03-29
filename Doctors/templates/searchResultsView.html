@@ -1,0 +1,80 @@
+{% include 'navbardoctors.html' %}
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+
+</head>
+<div class="content-wrapper">
+    <section class="content">
+        <div class="container-fluid">
+            <h3 style="color: cadetblue;">Patient Details</h3>
+            {%if flag != "true" %}
+            <fieldset>
+            {% csrf_token %}
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#request">Update Patient Details</a></li>
+            </ul>
+            <div class="tab-content">
+                <div id="request" class="tab-pane fade in active">
+                    <h3> Update Patient Details</h3></br>
+                    <form method="POST" role="form" id="form-client-info">
+                        {%csrf_token%}
+                        {%for field in patientDetailsForm%}
+                        {{ field.label_tag }} {{ field }}</br>
+                        {%endfor%}
+                        <button type="submit" class="btn btn-warning">Update</button>
+                    </form>
+                </div>  
+            </div>
+        </fieldset>
+        {%elif flag == "true" %}
+        <fieldset>
+        {% include 'messages.html' %}
+        <script>
+            setTimeout(function(){
+              if ($('#msg').length > 0) {
+                $('#msg').remove();
+              }
+            }, 2000)
+        </script>
+            {% csrf_token %}
+            {%for a in patientdetails%}
+            <a href="/doctors/patientRecords/search/{{a.patient_id}}">
+                <p data-placement="top" data-toggle="tooltip" title="Update">
+                    <button class="btn btn-info btn-xs" data-title="Update" data-toggle="modal"
+                            data-target="#edit"><span class="glyphicon glyphicon-pencil"></span></button>
+                </p>
+            </a>
+            <label aria-setsize="20">Patient ID</label>
+            <textfield style=" min-width:25px; max-width:50%;min-height:50px;height:50%;width:50%;">{{a.patient_id}}</textfield>
+            <br>
+            <label>Patient Name</label>
+            <textfield style=" min-width:25px; max-width:50%;min-height:50px;height:50%;width:50%;">{{a.patient_name}}</textfield>
+            <br>
+            <label>Patient Age</label>
+            <textfield style=" min-width:25px; max-width:50%;min-height:50px;height:50%;width:50%;">{{a.patient_age}}</textfield>
+            <br>
+            <label>Patient Weight</label>
+            <textfield style=" min-width:25px; max-width:50%;min-height:50px;height:50%;width:50%;">{{a.patient_weight}}</textfield>
+            <br>
+            <label>Patient Height</label>
+            <textfield style=" min-width:25px; max-width:50%;min-height:50px;height:50%;width:50%;">{{a.patient_height}}</textfield>
+            <br>
+            <label>Patient Address</label>
+            <textfield style=" min-width:50px; max-width:50%;min-height:50px;height:50%;width:50%;">{{a.patient_address}}</textfield>
+            <br>
+            <label>Patient Phone Number</label>
+            <textfield style=" min-width:25px; max-width:50%;min-height:50px;height:50%;width:50%;">{{a.patient_phone_no}}</textfield>
+            <br>
+            <label>Patient Email</label>
+            <textfield style=" min-width:25px; max-width:50%;min-height:50px;height:50%;width:50%;">{{a.patient_email}}</textfield>
+            <br>
+            {%endfor%}
+        </fieldset>
+        {% endif %}
+        </div>
+    </section>
+</div>

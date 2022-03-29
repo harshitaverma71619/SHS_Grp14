@@ -20,7 +20,7 @@ class appointmentForm(forms.Form):
     requested_date = forms.DateField(label="Requested Date", required=False,
                                      widget=forms.widgets.DateInput(attrs={'type': 'date', 'class': 'form-control', }))
 
-    appointment_with = forms.IntegerField(label='Appointment with', required=True,
+    doctor_id = forms.IntegerField(label='Appointment With', required=True,
                                         widget=forms.NumberInput(attrs=
                                         {
                                             'required': False,

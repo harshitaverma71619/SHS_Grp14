@@ -15,11 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path , include
+from Patients import urls
+from Doctors import urls
 
 urlpatterns = [
     path('', include('Hospitalportal.urls')),
     path('home/', include('HomePage.urls')),
     path('admin/', admin.site.urls),
     path('patient/',include('Patients.urls')),
-    path('labStaff/', include('LabStaff.urls'))
+    path('labStaff/', include('LabStaff.urls')),
+    path('doctors/', include('Doctors.urls', namespace='doctors'))
 ]
