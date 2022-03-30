@@ -27,7 +27,7 @@ class viewRequests(View):
             appoitment_id = int(request.POST.get('approve'))
             for entry in request_details:
                 if entry.appointment_id == appoitment_id:
-                    lab_report = LabReports(doctor_id = entry.doctor_id, patient_id = entry.patient_id, lab_staff_id = 1, report_status = "Approved", test_name = entry.lab_test)
+                    lab_report = LabReports(doctor_id = entry.doctor_id, patient_id = entry.patient_id, patient_diagnosis = entry.patient_diagnosis, lab_staff_id = 1, report_status = "Approved", test_name = entry.lab_test)
                     lab_report.save()
                     appointment = labTests.objects.get(appointment_id=entry.appointment_id)
                     appointment.lab_test_status = "Approved"
