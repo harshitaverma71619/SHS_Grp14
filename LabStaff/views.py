@@ -5,6 +5,7 @@ from Doctors.models import labTests
 from LabStaff.models import LabReports
 from HospitalStaff.models import AppointmentDetails
 import json
+from django.db.models import Q
 
 # Create your views here.
 class labStaffHome(View):
@@ -45,3 +46,61 @@ class viewRequests(View):
             #                      (msgS if not msgS == '' else msgE),
             #                      extra_tags='callout callout-success calloutCustom lead' if msgS else 'callout callout-danger calloutCustom lead')
             return redirect('/labStaff/viewRequests')
+class addLabRecord(View):
+    def get(self, request):
+        request_details = LabReports.objects.filter(report_status="Approved")
+        return render(request, 'labReportPage.html', {
+            'requests': request_details
+        })
+    def post(self,request):
+        
+        details = str(request.POST.get('details'))
+        record_id=request.POST.get('addData')
+        
+        message=""
+        try:
+            report_data= LabReports.objects.get(id=record_id)
+            report_data.report_info=details
+            report_data.report_status="Added"
+            report_data.save()    
+            message="Added Scuccessfully"
+                
+        except:
+            print("exception while fetching reports")
+            message="Exception in fetching Lab Reports"
+        finally:
+            return redirect('/labStaff/addLabRecord')
+
+class updateLabRecord(View):
+    def get(self, request):
+        crit=Q(report_status="Added")
+        crit1=Q(report_status="Updated")
+        request_details = LabReports.objects.filter(crit | crit1 )
+       
+        return render(request, 'updateReportPage.html', {
+            'requests': request_details
+        })
+    def post(self,request):
+        details = str(request.POST.get('details'))
+        record_id=request.POST.get('update')
+        message=""
+        try:
+            report_data= LabReports.objects.get(id=record_id)
+            report_data.report_info=details
+            report_data.report_status="Updated"
+            report_data.save()      
+            message="Updated Scuccessfully"
+        except:
+            print("exception while updating  reports")
+            message="Exception in fetching Lab Reports"
+        finally:
+            return redirect('/labStaff/updateLabRecord')
+
+
+    
+class viewLabRecord(View):
+    def get(self, request):
+        request_details = LabReports.objects.all()
+        return render(request, 'viewReportPage.html', {
+            'requests': request_details,
+        })

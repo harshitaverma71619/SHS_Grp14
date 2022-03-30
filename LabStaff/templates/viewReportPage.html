@@ -1,0 +1,105 @@
+{% load static %}
+{% include 'labNavbar.html' %}
+<head> <script>
+   
+</script></head>
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <!-- Small boxes (Stat box) -->
+            <div class="row">
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-warning">
+                        <div class="inner">
+                        
+                            <h3> {{requests | length }} </h3>
+
+                            <p> Total Lab records</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-hourglass-half"></i>
+                        </div>
+                        <!-- <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> -->
+                    </div>
+                </div>
+            </div>
+            <!-- /.row -->
+            <!-- Main row -->
+            <div class="row">
+                <!-- Left col -->
+                <section class="container">
+                    <!-- Custom tabs (Charts with tabs)-->
+                    <div class="card bg-gradient-light">
+                        <div class="card-header border-0">
+
+                            <h3 class="card-title">
+                                <i class="far fa-list-ul"></i>
+                                Lab Record
+                            </h3>
+                            <!-- tools card -->
+                            <div class="card-tools">
+                                <!-- button with a dropdown -->
+                                <button type="button" class="btn btn-success btn-sm" data-card-widget="collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                            </div>
+                            <!-- /. tools -->
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body pt-0">
+                            <ul class="list-group list-group-flush">
+                                {% for request in requests %} 
+                                <li class="list-group-item">
+                           
+                              <div class="col">
+                            <div class="row">
+                                <div style="margin-right: 220px;"> <div><strong>Patient ID</strong></div><div > {{request.patient_id}}</div></div><br>
+                                <div  style="margin-right: 220px;"><div><strong>Doctor ID</strong></div> <div >{{request.doctor_id}}</div> </div>
+                                <div ><div><strong>Test Name</strong></div><div >{{request.test_name}}</div></div>
+                                <button   style="width:105px;height:30px;margin-left:250px;background-color:green" >{{request.report_status}}</button>
+                            </div>
+                            <div class="row" style="margin-top: 30px;">
+                                <div style="margin-right: 220px;"> <div><strong>Report ID </strong></div><div > {{request.report_id}}</div></div>
+                                <div style="margin-right: 170px;"> <div><strong>Patient Diagnosis </strong></div><div > {{request.patient_diagnosis}}</div></div>
+                                <div ><div><strong>Report Details </strong></div> 
+                                <div >{{request.report_info}}</div>
+                                </div>
+                             
+                            </div>
+                            <br>
+                           
+                            <br>
+                            </div>
+
+                                </li>
+                                {% endfor %} 
+                      
+                            </ul>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </section>
+                <!-- /.Left col -->
+            </div>
+            <!-- /.row (main row) -->
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+</div>
+<!-- ./wrapper -->
+
+
+</body>
+
+</html>
