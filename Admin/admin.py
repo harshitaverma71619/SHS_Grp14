@@ -1,7 +1,7 @@
 from django.contrib import admin
-from .models import AdminDetails, StaffDetails, TransactionDetails
+from .models import AdminDetails, EmployeeDetails, TransactionDetails
 
 # Register your models here.
 admin.site.register(AdminDetails)
-admin.site.register(StaffDetails)
+admin.site.register(EmployeeDetails)
 admin.site.register(TransactionDetails)

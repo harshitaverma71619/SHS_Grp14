@@ -21,7 +21,7 @@ from Doctors import urls
 urlpatterns = [
     path('', include('Hospitalportal.urls')),
     path('home/', include('HomePage.urls')),
-    path('admin/', admin.site.urls),
+    path('admin/', include('Admin.urls', namespace='admin')),
     path('patient/',include('Patients.urls')),
     path('labStaff/', include('LabStaff.urls')),
     path('doctors/', include('Doctors.urls', namespace='doctors'))
