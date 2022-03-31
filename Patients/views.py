@@ -8,15 +8,45 @@ from .forms import *
 from django.contrib import messages
 from django.utils.decorators import method_decorator
 from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
+from .models import * 
+from Hospitalportal.models import * 
+from django.views.decorators.cache import cache_control
+import logging
+from datetime import datetime
 
-def logout_view(request):
-     logout(request)
-     return redirect('/Login')
+
+logging.basicConfig(filename="userstatus.log",
+                    format='%(asctime)s %(message)s',
+                    filemode='w')
+logger = logging.getLogger()
+
+logger.setLevel(logging.INFO)
+def logout_user(request,id):
+    logout(request)
+    print("Loggedout")
+    username= PatientDetails.objects.get(patient_id=id)
+    test = HospitalPortal.objects.get(username=username.patient_name)
+    test.session='N'
+    test.save()
+    now = datetime.now()
+    dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
+    logger.info("USERNAME:  "+username.patient_name+"   LOGOUTIME:   "+dt_string)
+    return redirect('/Login')
+
 
 class patientHome(View):
-    def get(self,request):
+    def get(self,request,id):
+        if not (request.user.is_authenticated):
+            return redirect('/Login')
+
+        #print(user.is_authenticated)
+        # print(request.session.get('id'))
+        # print(request.id)
+        print("Hello Dheeraj")
+        print(id)
         return render(request,'patientHome.html',{
-            'user':'aish'
+            'id':id
         })
 
    

@@ -20,7 +20,16 @@ from django.core.mail import EmailMessage
 from django.conf import settings
 import threading
 from django.template.loader import render_to_string
+import logging
+from datetime import datetime
 
+now = datetime.now()
+logging.basicConfig(filename="userstatus.log",
+                    format='%(asctime)s %(message)s',
+                    filemode='w')
+logger = logging.getLogger()
+
+logger.setLevel(logging.INFO)
 User = get_user_model()
 class EmailThread(threading.Thread):
 
@@ -54,27 +63,37 @@ class Login(View):
         form = Loginform(request.POST)
         if form.is_valid():
             username = form.cleaned_data.get('username')
+            if not User.objects.filter(username=username).exists():
+                    messages.info(request,'USER DETAILS DOESNT EXIST, PLEASE REGISTER')
+                    return render(request,'Login.html')
             password = form.cleaned_data.get('password')
             user = authenticate(username=str(username),password=str(password))
-            if not user.is_email_verified:
-                messages.add_message(request, messages.ERROR,'Email is not verified, please check your email inbox')
-                return render(request,'Login.html')
-            test = HospitalPortal.objects.get(username=username)
-            if user is not None and test.session =='N':
-                login(request,user)
-                test.session = 'Y'
-                test.save()
-                if test.Role == 'Patient':
-                    return redirect("/patient/",{'name':user})
-                elif test.Role == 'Doctor':
-                    return redirect("/doctor/",{'name':user})
-                elif test.Role == 'Admin':
-                    return redirect("/admin/",{'name':user})
-                elif test.Role == 'Labstaff':
-                    return redirect("/labStaff/",{'name':user})
-            elif user is not None and user.is_active:
-                messages.info(request,'User already logged in')
-                return render(request,'Login.html')  
+            if user is not None:
+                if not user.is_email_verified:
+                    messages.add_message(request, messages.ERROR,'Email is not verified, please check your email inbox')
+                    return render(request,'Login.html')
+                test = HospitalPortal.objects.get(username=username)
+                if test.session =='N':
+                    login(request,user)
+                    test.session = 'Y'
+                    test.save()
+                    dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
+                    logger.info("USERNAME:  "+username+"   LOGINTIME:   "+dt_string)
+                    if test.Role == 'Patient':
+                        pid= PatientDetails.objects.get(patient_name=username)
+                        id=pid.patient_id
+                        return HttpResponseRedirect(reverse('patient:patientHome', args=[id]))
+
+                        # return redirect("/patient/home/id")
+                    elif test.Role == 'Doctor':
+                        return redirect("/doctor/",{'name':user})
+                    elif test.Role == 'Admin':
+                        return redirect("/admin/",{'name':user})
+                    elif test.Role == 'Labstaff':
+                        return redirect("/labStaff/",{'name':user})
+                else:
+                    messages.info(request,'User already logged in')
+                    return render(request,'Login.html')  
             else:
                 messages.info(request,'INVALID CREDENTIALS')
                 return render(request,'Login.html')
@@ -98,9 +117,9 @@ class Registercheck(View):
                 if User.objects.filter(username=patient_name).exists():
                     messages.info(request,'PATIENT NAME ALREADY EXIST')
                     return render(request,'register.html')
-                #if User.objects.filter(email=str(patient_email)).exists():
-                #    messages.info(request,'EMAIL ALREADY EXIST')
-                #    return render(request,'register.html')
+                if User.objects.filter(email=str(patient_email)).exists():
+                    messages.info(request,'EMAIL ALREADY EXIST')
+                    return render(request,'register.html')
                 PatientDetailsObj = PatientDetails(patient_name=patient_name,patient_age = patient_age, patient_weight = patient_weight,patient_height = patient_height, patient_address = patient_address, patient_phone_no = patient_phone_no,patient_email =patient_email)
                 PatientDetailsObj.save()
                 Userobj = User.objects.create_user(username=patient_name, password = password, email = patient_email)
@@ -108,7 +127,11 @@ class Registercheck(View):
                 HospitalPortalobj = HospitalPortal(username=patient_name,Role= 'Patient',session='N')
                 HospitalPortalobj.save()
                 send_action_email(Userobj,request)
+                messages.info(request,'Please check your email to verify the account')
                 return redirect("/Login")
+            else:
+                messages.info(request,'PASSWORD DIDNT MATCH')
+                return render(request,'register.html')
         else:
             print("Hello")
             return render(request,'Login.html')
