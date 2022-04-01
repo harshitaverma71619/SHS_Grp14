@@ -27,7 +27,6 @@ class appointmentForm(forms.Form):
                                             'class': 'form-control',
                                             'placeholder': ('Appointment with')
                                         }))
-
 class insuranceClaimRequestForm(forms.Form):
     patient_firstname = forms.CharField(label='Firstname.**', required=True,
                                    widget=forms.TextInput(attrs=
@@ -45,15 +44,16 @@ class insuranceClaimRequestForm(forms.Form):
                                        'placeholder': ('patient_lastname')
                                    }))                               
     
+    '''
+    policy_name = forms.CharField(label='Insurance Policy Name', required=True,
+                                   widget=forms.TextInput(attrs=
+                                     {
+                                         'required':True,
 
-    insurance_name = forms.CharField(label='Insurance policy name', required=True,
-                                        widget=forms.TextInput(attrs=
-                                        {
-                                            'required': True,
-                                            'class': 'form-control',
-                                            'placeholder': ('insurance_name')
-                                        }), max_length=200)
-
+                                         'class': 'form-control',
+                                         'placeholder': ('claim_amt')
+                                     }))
+    '''
     claim_amt = forms.IntegerField(label= 'Claim amount', required=True,
                                      widget=forms.NumberInput(attrs=
                                      {
@@ -61,5 +61,75 @@ class insuranceClaimRequestForm(forms.Form):
                                          'class': 'form-control',
                                          'placeholder': ('claim_amt')
                                      }))
+class registerPolicyForm(forms.Form):
+    
+    patient_firstname = forms.CharField(label='Firstname', required=True,
+                                   widget=forms.TextInput(attrs=
+                                   {
+                                       'required': True,
+                                       'class': 'form-control',
+                                       'placeholder': ('patient_firstname')
+                                   }))
+                                   
+    patient_lastname = forms.CharField(label='Lastname', required=True,
+                                   widget=forms.TextInput(attrs=
+                                   {
+                                       'required': True,
+                                       'class': 'form-control',
+                                       'placeholder': ('patient_lastname')
+                                   }))         
+   
+    patient_age = forms.IntegerField(label='Age', required=True,
+                                   widget=forms.NumberInput(attrs=
+                                   {
+                                       'required': True,
+                                       'class': 'form-control',
+                                       'placeholder': ('Age')
+                                   }))                  
 
+    patient_address = forms.CharField(label='Address', required=True,
+                                   widget=forms.TextInput(attrs=
+                                   {
+                                       'required': True,
+                                       'class': 'form-control',
+                                       'placeholder': ('Enter Address')
+                                   }))
+    patient_phone_no = forms.IntegerField(label='Phone', required=True,
+                                   widget=forms.NumberInput(attrs=
+                                   {
+                                       'required': True,
+                                       'class': 'form-control',
+                                       'placeholder': ('Enter Phone Number')
+                                   }))
+    patient_email = forms.CharField(label='Email-id', required=True,
+                                   widget=forms.TextInput(attrs=
+                                   {
+                                       'required': True,
+                                       'class': 'form-control',
+                                       'placeholder': ('Enter Email')
+                                   }))
+
+class newInsurancePolicyForm(forms.Form):
+    policy_name = forms.CharField(label='Policy Name', required=True,
+                                   widget=forms.TextInput(attrs=
+                                   {
+                                       'required': True,
+                                       'class': 'form-control',
+                                       'placeholder': ('Policy Name')
+                                   }))
+    coverage_plans = forms.CharField(max_length = 200,label='Coverage Plans', required=True,
+                                   widget = forms.Textarea(attrs=
+                                   {
+                                       'required': True,
+                                       'class': 'form-control',
+                                       'placeholder': ('Coverage Plans')
+                                   }))                               
+    insurance_amt = forms.IntegerField(label='Max Claim amount', required=True,
+                                        widget=forms.NumberInput(attrs=
+                                        {
+                                            'required': True,
+                                            'class': 'form-control',
+                                            'placeholder': ('Max Claim amount')
+                                        }))
+  
     

@@ -1,0 +1,50 @@
+{% include 'navbar.html' %}
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+
+</head>
+{{registerPolicyForm.media}}
+
+<div class="content-wrapper">
+    <section class="content">
+        <div class="container-fluid">
+
+            {% if messages %}
+            <ul class="messages" style="padding:3px">
+                {% for message in messages %}
+                <p style="padding:3px;font-weight:600; font-size:13px" {% if message.tags %} class="{{ message.tags }}"
+                    {% endif %}>
+                    {{ message }}</p>
+                {% endfor %}
+            </ul>
+            {% endif %}
+
+
+            <div class="tab-content">
+                <div id="request" class="tab-pane fade in active">
+                    <h3>Register Medical Insurance</h3></br>
+                    <form method="POST" role="form" id="form-client-info">
+                        {%csrf_token%}
+                        {%for field in registerPolicyForm%}
+
+                        {{ field.label_tag }} {{ field }}</br>
+                        {%endfor%}
+                        <button type="submit" class="btn btn-primary">Submit</button>
+
+                    </form>
+
+                </div>
+                       
+                   
+            </div>
+        </div>
+
+
+
+</div>
+</section>
+</div>

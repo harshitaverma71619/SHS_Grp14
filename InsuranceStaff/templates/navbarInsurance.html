@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Patient Home Page | </title>
+  <title>Insurance Staff Home Page | </title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -39,7 +39,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="./index3" class="nav-link">Home</a>
+        <a href="/insurance" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
@@ -56,42 +56,31 @@
     <div class="sidebar">
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="info">
-          <a href="#" class="d-block">Welcome, {{id}}</a> 
+          <a href="#" class="d-block">Welcome, {{user}}</a>
         </div>
       </div>
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-item">
-            <a href="/patient" class="nav-link">
+            <a href="/insurance" class="nav-link">
               <i class="nav-icon fas fa-home"></i>
               <p>Home</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="/patient/bookAppointment/{{id}}" class="nav-link">
+            <a href="/insurance/newPolicies" class="nav-link">
                 <i class="nav-icon fas fa-user-md"></i>
-                    <p> Book Appointment </p>
+                    <p> Add Insurance Policies </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="/patient/insuranceClaimRequest/{{id}}" class="nav-link">
-                <i class="nav-icon fas fa-medkit"></i>
-                    <p> Insurance Claim </p>
-            </a>
-
-          <li class="nav-item">
-            <a href="" class="nav-link">
+            <a href="/insurance/viewPolicies" class="nav-link">
                 <i class="nav-icon fas fa-tasks" aria-hidden="true"></i>
-                   <p>View Records </p>
+                   <p>View Policies </p>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-                <p> Request Lab Tests</p>
-            </a>
-          </li>
+        
           <li class="nav-item">
             <a href="" class="nav-link">
                 <i class="nav-icon fas fa-exchange-alt"></i>
@@ -99,7 +88,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/patient/logout/{{id}}" class="nav-link">
+            <a href="" class="nav-link">
                 <i class="nav-icon fas fa-sign-out-alt"></i>
                     <p> Sign out</p>
             </a>
