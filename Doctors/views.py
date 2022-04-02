@@ -169,7 +169,7 @@ class addDiagnosis(View):
                     pd = detail1.patient_diagnosis
 
                     labTestObj = labTests(patient_id = pt,appointment_id = ap,first_name = fs,
-                    last_name = ls, requested_date = rq,doctor_id = di, patient_diagnosis = pd,lab_test = lab_tests1, prescribed_report_status = True, )
+                    last_name = ls, requested_date = rq,doctor_id = di, patient_diagnosis = pd,lab_test = lab_tests1, lab_report_status = True)
                     print(labTestObj)
                     labTestObj.save()
                     print(detail1)
@@ -192,6 +192,7 @@ class addDiagnosis(View):
                 details = {'patient_diagnosis': details.patient_diagnosis, 'appointment_id': id}
                 #lab_tests = {'lab_tests': lab_tests1.lab_tests, 'appointment_id': id}
                 labTestDetails = labTests.objects.filter(appointment_id = id)
+                print(labTestDetails)
                 details2 = AppointmentDetails.objects.filter(appointment_id=id)
                 return render(request, 'patientDiagnosis.html', {'details2':details2,'flag': flag,'labTestDetails': labTestDetails, 'diagnosisForm': diagnosisForm(details), 'labTestsForm': labTestsForm(), 'details': details})
 

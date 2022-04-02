@@ -17,7 +17,7 @@ class prescriptions(models.Model):
     patient_diagnosis = models.CharField(max_length=255, default="adding....")
     drug = models.CharField(max_length=255, default="adding....")
     unit = models.CharField(max_length=255, default="adding....")
-    dosage = models.IntegerField(max_length=255, default="adding....")
+    dosage = models.IntegerField(default="adding....")
     prescription_text = models.CharField(max_length=255, default="adding....")
 
 class labTests(models.Model):

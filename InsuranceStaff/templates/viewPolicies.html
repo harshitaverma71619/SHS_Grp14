@@ -1,0 +1,67 @@
+{% include 'navbarInsurance.html' %}
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+
+</head>
+{{newInsurancePolicyForm.media}}
+
+<div class="content-wrapper">
+    <section class="content">
+        <div class="container-fluid">
+
+            {% if messages %}
+            <ul class="messages" style="padding:3px">
+                {% for message in messages %}
+                <p style="padding:3px;font-weight:600; font-size:13px" {% if message.tags %} class="{{ message.tags }}"
+                    {% endif %}>
+                    {{ message }}</p>
+                {% endfor %}
+            </ul>
+            {% endif %}
+
+
+            <div class="tab-content">
+                <div id="view" class="tab-pane fade in active">
+                    <h3>Medical Insurance Policies</h3>
+                   
+                        {%for a in appDetails%}
+                        <table id="data" class="table table-striped table-bordered compact" cellspacing="0" style="width:100%">
+                        <tbody>
+                        <tr height="8%">
+                            <td colspan="2">
+                            <b><h4>{{a.policy_name}}</h4></b>
+                       </td>
+                       </tr>
+                        <tr>
+                            <td width="5%" height="10%">Coverage Plans</td>
+                            <td width="5%" height="10%">{{a.coverage_plans}}</td>
+                           
+                        </tr>
+                        <tr>
+                            <td width="5%"height="5%">Max Claim amount</td>
+                            <td width="5%"height="5%">${{a.insurance_amt}}</td>
+    
+                        </tr>
+                       
+                       
+                        </tbody>
+                    </table>
+                    {%endfor%}
+                        
+                    
+                   
+        
+                    <p> </p>
+                </div>
+            </div>
+        </div>
+
+
+
+</div>
+</section>
+</div>

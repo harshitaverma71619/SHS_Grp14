@@ -7,21 +7,24 @@ class patientDetailsForm(forms.Form):
                                    {
                                        'required': True,
                                        'class': 'form-control',
-                                       'placeholder': ('PatientId')
+                                       'placeholder': ('PatientId'),
+                                       'readonly': 'readonly'
                                    }))
     patient_name = forms.CharField(label='patient_name.**', required=True,
                                    widget=forms.TextInput(attrs=
                                    {
                                        'required': True,
                                        'class': 'form-control',
-                                       'placeholder': ('Patient Name')
+                                       'placeholder': ('Patient Name'),
+                                       'readonly': 'readonly'
                                    }))
     patient_age = forms.IntegerField(label='patient_age.**', required=True,
                                    widget=forms.NumberInput(attrs=
                                    {
                                        'required': True,
                                        'class': 'form-control',
-                                       'placeholder': ('Patient Age')
+                                       'placeholder': ('Patient Age'),
+                                       'readonly': 'readonly'
                                    }))
     patient_weight = forms.IntegerField(label='patient_weight.**', required=True,
                                    widget=forms.NumberInput(attrs=
@@ -90,44 +93,50 @@ class patientDiagnosisForm(forms.Form):
                                    {
                                        'required': True,
                                        'class': 'form-control',
-                                       'placeholder': ('PatientId')
+                                       'placeholder': ('PatientId'),
+                                       'readonly': 'readonly'
                                    }))
     appointment_id = forms.IntegerField(label='appointment_id.**', required=True,
                                    widget=forms.NumberInput(attrs=
                                    {
                                        'required': True,
                                        'class': 'form-control',
-                                       'placeholder': ('Appointment Id')
+                                       'placeholder': ('Appointment Id'),
+                                       'readonly': 'readonly'
                                    }))
     first_name = forms.CharField(label='first_name.**', required=True,
                                    widget=forms.TextInput(attrs=
                                    {
                                        'required': True,
                                        'class': 'form-control',
-                                       'placeholder': ('First Name')
+                                       'placeholder': ('First Name'),
+                                       'readonly': 'readonly'
                                    }))
     last_name = forms.CharField(label='last_name.**', required=True,
                                    widget=forms.TextInput(attrs=
                                    {
                                        'required': True,
                                        'class': 'form-control',
-                                       'placeholder': ('Last Name')
+                                       'placeholder': ('Last Name'),
+                                       'readonly': 'readonly'
                                    }))
     doctor_id = forms.IntegerField(label='doctor_id.**', required=True,
                                    widget=forms.NumberInput(attrs=
                                    {
                                        'required': True,
                                        'class': 'form-control',
-                                       'placeholder': ('Doctor Id')
+                                       'placeholder': ('Doctor Id'),
+                                       'readonly': 'readonly'
                                    }))
     requested_date = forms.DateField(label="Requested Date", required=False,
-                                     widget=forms.widgets.DateInput(attrs={'type': 'date', 'class': 'form-control', }))
+                                     widget=forms.widgets.DateInput(attrs={'type': 'date', 'class': 'form-control','readonly': 'readonly' }))
     status = forms.CharField(label='status.**', required=True,
                                    widget=forms.TextInput(attrs=
                                    {
                                        'required': True,
                                        'class': 'form-control',
-                                       'placeholder': ('Status')
+                                       'placeholder': ('Status'),
+                                       'readonly': 'readonly'
                                    }))
     patient_diagnosis = forms.CharField(label='patient_diagnosis.**', required=False,
                                    widget=forms.TextInput(attrs=

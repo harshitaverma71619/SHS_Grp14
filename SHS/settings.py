@@ -55,11 +55,7 @@ INSTALLED_APPS = [
     'Admin',
     'InsuranceStaff',
     'LabStaff',
-    #'bootstrap4',
-    #'bootstrap_datepicker_plus',
-    
     'Doctors',
-    
 ]
 
 MIDDLEWARE = [

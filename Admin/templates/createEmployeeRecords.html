@@ -1,0 +1,44 @@
+{% include 'adminNavbar.html' %}
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+
+</head>
+{{createEmployeeForm.media}}
+
+<div class="content-wrapper">
+    <section class="content">
+        <div class="container-fluid">
+            {% include 'messages.html' %}
+            <script>
+                setTimeout(function(){
+                  if ($('#msg').length > 0) {
+                    $('#msg').remove();
+                  }
+                }, 2000)
+            </script>
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#create">Create employee record</a></li>
+                <li><a href="viewEmployeeRecords.html">View employee record</a></li>
+                <li><a href="editEmployeeRecords.html">Update / Delete employee record</a></li>
+            </ul>
+            <div class="tab-content">
+                <div id="create">
+                    <!-- <h3>Appointment Form</h3></br> -->
+                    <br>
+                    <form method="POST" role="form" id="form-client-info">
+                        {%csrf_token%}
+                        {%for field in createEmployeeForm%}
+                        {{ field.label_tag }} {{ field }}</br>
+                        {%endfor%}
+                        <br>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

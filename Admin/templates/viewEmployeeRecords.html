@@ -1,0 +1,45 @@
+{% include 'adminNavbar.html' %}
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+
+</head>
+{{createEmployeeForm.media}}
+
+<div class="content-wrapper">
+    <section class="content">
+        <div class="container-fluid">
+            <ul class="nav nav-tabs">
+                <li><a href="createEmployeeRecords.html">Create employee record</a></li>
+                <li class="active"><a href="#view">View employee record</a></li>
+                <li><a href="editEmployeeRecords.html">Update / Delete employee record</a></li>
+            </ul>
+            <div id="view">
+                <h3>View Employee Records</h3>
+                <table id="data" class="table table-striped table-bordered compact" cellspacing="0"
+                    style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Employee ID</th>
+                            <th>Employee name</th>
+                            <th>Employee Department</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {%for employee in employeeDetails%}
+                        <tr>
+                            <td width="5%">{{employee.employee_id}}</td>
+                            <td width="25%">{{employee.employee_first_name}} {{employee.employee_last_name}}</td>
+                            <td width="15%">{{employee.employee_dept}}</td>
+                        </tr>
+                        {%endfor%}
+                    </tbody>
+                </table>
+                <p> </p>
+            </div>
+        </div>
+    </section>
+</div>

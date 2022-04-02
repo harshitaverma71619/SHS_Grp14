@@ -9,6 +9,8 @@
 </head>
 {{appointmentForm.media}}
 
+
+
 <div class="content-wrapper">
     <section class="content">
         <script type="text/javascript">
@@ -64,6 +66,7 @@
                             <th>Appointment With</th>
                             <th>Requested Date</th>
                             <th>Status</th>
+                            <th>Transaction</th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -75,8 +78,26 @@
                             <td width="10%">{{a.first_name}}</td>
                             <td width="10%">{{a.last_name}}</td>
                             <td width="10%">{{a.doctor_id}}</td>
-                            <td width="20%">{{a.requested_date}}</td>
+                            <td width="10%">{{a.requested_date}}</td>
                             <td width="10%">{{a.status}}</td>  
+                            <td width="10%">{{a.transaction_status}} 
+                                {% if a.transaction_status == 'Pending'%} 
+                                <p data-placement="top" data-toggle="tooltip" title="Update"></p>
+                                <a href="/patient/approveTransaction/{{a.appointment_id}}">
+                                        <button class="btn btn-info btn-xs" data-title="Update" data-toggle="modal"
+                                                data-target="#edit"><span class="fa fa-thumbs-up"></span></button>
+                                    
+                                </a> 
+                                <a href="/patient/declineTransaction/{{a.appointment_id}}">
+                                        <button class="btn btn-info btn-xs" data-title="Update" data-toggle="modal"
+                                                data-target="#edit"><span class="fa fa-thumbs-down"></span></button>
+                                  
+                                </a> 
+                            </p>
+
+                                {%endif%} 
+                            </td>   
+                            
                             
                             <td width="5%">
                                 {%if a.status == 'Pending'%}
